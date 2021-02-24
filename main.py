@@ -40,6 +40,7 @@ class Game:
                     for item in self.objects:
                         if item.is_clicked(pygame.mouse.get_pos()):
                             item.on_clicked()
+                            print('clicked')
 
             # draw all again
             self.screen.fill('white')

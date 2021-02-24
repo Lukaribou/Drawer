@@ -14,4 +14,3 @@ class Drawable:
 
     def on_clicked(self):
         self.selected = True
-        print('clicked')

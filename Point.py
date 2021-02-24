@@ -1,6 +1,7 @@
 from typing import Tuple
 
 import pygame
+import math
 
 from Drawable import Drawable
 
@@ -15,9 +16,5 @@ class Point(Drawable):
     def draw(self, screen):
         pygame.draw.circle(screen, self.on_selected_color if self.selected else self.color, self.pos, self.radius)
 
-    def is_clicked(self, click_coords: Tuple[int, int]):
-        return click_coords[0] ** 2 + click_coords[1] ** 2 - self.radius ** 2 <= 0
-
-    def on_clicked(self):
-        self.selected = True
-        print('clicked')
+    def is_clicked(self, c_pos: Tuple[int, int]):
+        return math.sqrt((c_pos[0] - self.pos[0]) ** 2 + (c_pos[1] - self.pos[1]) ** 2) < self.radius
