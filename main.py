@@ -33,14 +33,18 @@ class Game:
                     self.mode.set_text('point')
                 elif ev.key == pygame.K_s:
                     self.mode.set_text('select')
+                elif ev.key == pygame.K_d:
+                    self.mode.set_text('delete')
             elif ev.type == pygame.MOUSEBUTTONUP:
                 if self.mode.get_text() == 'point':
                     self.objects.append(Point(pygame.mouse.get_pos()))
-                elif self.mode.get_text() == 'select':
+                else:
                     for item in self.objects:
                         if item.is_clicked(pygame.mouse.get_pos()):
-                            item.on_clicked()
-                            print('clicked')
+                            if self.mode.get_text() == 'select':
+                                item.on_clicked()
+                            elif self.mode.get_text() == 'delete':
+                                self.objects.remove(item)
 
             # draw all again
             self.screen.fill('white')
